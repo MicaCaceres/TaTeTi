@@ -6,17 +6,19 @@ import { checkEndGame, checkWinner } from "./helpers/checkWinner";
 import { Winner } from "./components/Winner";
 
 export function App() {
-  const [board, setBoard] = useState(() => {
-    const boardFromStorage = window.localStorage.getItem("partida");
-    return boardFromStorage
-      ? JSON.parse(boardFromStorage)
-      : Array(9).fill(null);
-  });
-  const [turn, setTurn] = useState(() => {
-    const turnFromStorage = window.localStorage.getItem("turno");
-    return turnFromStorage ?? turns.x;
-  });
+  // const [board, setBoard] = useState(() => {
+  //   const boardFromStorage = window.localStorage.getItem("partida");
+  //   return boardFromStorage
+  //     ? JSON.parse(boardFromStorage)
+  //     : Array(9).fill(null);
+  // });
+  // const [turn, setTurn] = useState(() => {
+  //   const turnFromStorage = window.localStorage.getItem("turno");
+  //   return turnFromStorage ?? turns.x;
+  // });
 
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [turn, setTurn] = useState(turns.x);
   const [winner, setWinner] = useState(null);
 
   const updateBoard = (index) => {
@@ -28,9 +30,8 @@ export function App() {
 
     const newTurn = turn === turns.x ? turns.o : turns.x;
     setTurn(newTurn);
-
-    window.localStorage.setItem("partida", JSON.stringify(newBoard));
-    window.localStorage.setItem("turno", newTurn);
+    // window.localStorage.setItem("partida", JSON.stringify(newBoard));
+    // window.localStorage.setItem("turno", newTurn);
 
     const newWinner = checkWinner(newBoard);
     if (newWinner) {
