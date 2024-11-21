@@ -1,4 +1,3 @@
-// App.js
 import { useState } from "react";
 import { Square } from "./components/Square";
 import { turns } from "./constant";
@@ -29,7 +28,7 @@ export function App() {
 
     const newTurn = turn === turns.x ? turns.o : turns.x;
     setTurn(newTurn);
-    //guardarpartida
+
     window.localStorage.setItem("partida", JSON.stringify(newBoard));
     window.localStorage.setItem("turno", newTurn);
 
